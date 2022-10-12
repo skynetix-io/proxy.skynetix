@@ -1,0 +1,23 @@
+/* -------------------------------------------------------------------------- */
+/*                                Falcon Button                               */
+/* -------------------------------------------------------------------------- */
+/* prettier-ignore */
+/*# sourceMappingURL=user.css.map */
+
+
+@media (min-width: 793) {
+    #bottom-link{
+        position: absolute !important;
+        bottom: 5% !important; 
+        left: 12% !important;
+    }
+}
+
+
+.bg-primary-color {
+    background-color: #142149;
+}
+
+.dark-primary-color {
+    color: #142149;
+}

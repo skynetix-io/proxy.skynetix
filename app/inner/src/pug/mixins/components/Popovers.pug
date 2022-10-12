@@ -1,0 +1,4 @@
+mixin Popover(val)
+  button.btn.btn-secondary.m-1(type='button' data-bs-container='body' data-bs-toggle='popover' data-bs-placement=val data-bs-content=`${val[0].toUpperCase() + val.substring(1)} Popover`)=`${val[0].toUpperCase() + val.substring(1)} Popover`
+  = '\n'
+  

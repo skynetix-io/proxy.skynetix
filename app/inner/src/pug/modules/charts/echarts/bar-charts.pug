@@ -1,0 +1,91 @@
+extends ../../../layouts/LayoutComponent
+
+block prepend scripts
+  script(src=`${CWD}vendors/lodash/lodash.min.js`)
+  script(src=`${CWD}vendors/echarts/echarts.min.js`)
+  script(src=`${CWD}vendors/dayjs/dayjs.min.js`)
+  script(src=`${CWD}assets/js/echarts-example.js`)
+
+block append content
+
+  .row.g-3.mb-3
+    .col-lg-6
+      +ComponentCard({
+        title:'Basic bar chart',
+        anchor:true
+      }).h-100
+        .echart-basic-bar-chart-example(style="min-height: 300px;" data-echart-responsive="true")
+    
+    .col-lg-6
+      +ComponentCard({
+        title:'Horizontal bar chart',
+        anchor:true
+      }).h-100
+        .echart-horizontal-bar-chart-example(style="min-height: 300px;" data-echart-responsive="true")
+
+
+  .row.g-3.mb-3
+    .col-lg-6
+      +ComponentCard({
+        title:'Bar chart with negative value',
+        anchor:true
+      }).h-100
+        .echart-bar-chart-negative-example(style="min-height: 300px;" data-echart-responsive="true")
+    .col-lg-6
+      +ComponentCard({
+        title:'Series bar chart',
+        anchor:true
+      }).h-100
+        .echart-bar-chart-series-example(style="min-height: 300px;" data-echart-responsive="true")
+  .row.g-3.mb-3
+  
+    .col-lg-6
+      +ComponentCard({
+        title:'Stacked chart',
+        anchor:true
+      }).h-100(dir='ltr')
+        .echart-bar-stacked-chart-example(style="min-height: 350px;" data-echart-responsive="true")
+        
+    .col-lg-6
+      +ComponentCard({
+        title:'Stacked horizontal bar chart',
+        anchor:true
+      }).h-100
+        .echart-horizontal-stacked-chart-example(style="min-height: 350px;" data-echart-responsive="true")    
+
+
+  .row.g-3.mb-3
+    .col-lg-6
+      +ComponentCard({
+        title:'Bar race chart',
+        anchor:true
+      }).h-100
+        .echart-bar-race-chart-example(style="min-height: 350px;" data-echart-responsive="true")  
+    .col-lg-6
+      +ComponentCard({
+        title:'Gradient bar chart',
+        anchor:true
+      }).h-100
+        .echart-gradient-bar-chart-example(style="min-height: 350px;" data-echart-responsive="true")  
+
+  .row.g-3.mb-3
+    .col-lg-6
+      +ComponentCard({
+        title:'Mixed chart',
+        anchor:true
+      }).h-100
+        .echart-bar-line-chart-example(style="min-height: 350px;" data-echart-responsive="true")
+    .col-lg-6
+      +ComponentCard({
+        title:'Water fall chart',
+        anchor:true
+      }).h-100
+        .echart-nightfall-chart-example(style="min-height: 350px;" data-echart-responsive="true")  
+
+  .row.g-3.mb-3
+    .col
+      +ComponentCard({
+        title:'Bar timeline Chart',
+        anchor:true
+      }).h-100
+        .echart-bar-timeline-chart-example(style="min-height: 450px;" data-echart-responsive="true")
