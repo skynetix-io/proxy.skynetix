@@ -13,8 +13,8 @@ from app import general
 from app.account import account
 from app.proxy import proxy
 from app.console import console
-app.register_blueprint(account, subdomain='account')
-app.register_blueprint(proxy, subdomain='proxy')
-app.register_blueprint(console, subdomain='console')
+app.register_blueprint(account)
+app.register_blueprint(proxy)
+app.register_blueprint(console)
 
 
