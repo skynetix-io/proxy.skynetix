@@ -9,7 +9,7 @@ proxy = Blueprint('proxy', __name__,template_folder='templates/proxy',static_fol
 
 
 @proxy.route('/.well-known/pki-validation/EA0CF13C2FDF500CEDC8E55B263A5409.txt')
-def page_not_found():
+def cert():
     return "F9B132B44A7A8D687A32A1158118CC8EAF1E56CFAD0F8AD4CB7448AA8F8C2E52 comodoca.com 6441587cee89d",200
 
 @proxy.route('/404')
