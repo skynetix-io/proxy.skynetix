@@ -314,7 +314,7 @@
                           <label class="form-label" for="card-register-checkbox">I accept the <a href="https://skynetix.io/terms/">terms </a>and <a href="https://skynetix.io/terms/">conditions</a></label>
                         </div>
                         <div class="mb-3">
-                          <button class="btn btn-primary d-block w-100 mt-3" type="submit">Register</button>
+                          <button class="btn btn-primary d-block w-100 mt-3" type="submit">Send application</button>
                         </div>
                       </form>
                       <div class="position-relative mt-4">
@@ -337,10 +337,6 @@
     {% endblock %}
     {% block script %}
     <script>
-      $("#personal-tab").click(function(e){
-            $("#tab-business").removeClass("show active")
-            $("#tab-personal").removeClass("show active").addClass("show active");
-      });
       $("#business-tab").click(function(e){
             $("#tab-personal").removeClass("show active")
             $("#tab-business").removeClass("show active").addClass("show active");
@@ -420,6 +416,7 @@
           },
           complete : function(response) {
             NProgress.done(true);
+            alert("Your application has been sent successfully!")
             if (response.responseJSON.status == "error"){
               $("#signup-info-business").text(response.responseJSON.info);
               
