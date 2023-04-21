@@ -7,5 +7,5 @@ export SECRET_KEY='asdasvasv77sa0970932=/(6'
 
 while true
 do
-    gunicorn --certfile=cert.crt --keyfile=server.key --bind 0.0.0.0:443 -w 5 app:app
+    gunicorn --bind 0.0.0.0:5000 -w 5 app:app
 done
