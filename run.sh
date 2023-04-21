@@ -7,5 +7,5 @@ export SECRET_KEY='asdasvasv77sa0970932=/(6'
 
 while true
 do
-    gunicorn --bind 0.0.0.0:5000 -w 5 app:app
+    gunicorn --bind 127.0.0.1:5000 -w 5 app:app
 done
