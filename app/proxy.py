@@ -14,7 +14,7 @@ def cert():
     return "F9B132B44A7A8D687A32A1158118CC8EAF1E56CFAD0F8AD4CB7448AA8F8C2E52 comodoca.com 6441587cee89d",200
 
 @proxy.route('/enot_37e3e205.html')
-def cert():
+def enot():
     return render_template('enot_37e3e205.html'),200
 
 @proxy.route('/404')
