@@ -3,7 +3,8 @@ from flaskext.mysql import MySQL
 import re,requests,json
 from flask import render_template,session,make_response,request,redirect,url_for,Blueprint
 from datetime import timedelta
-
+import requests
+import json
 
 proxy = Blueprint('proxy', __name__,template_folder='templates/proxy',static_folder='static')
 
@@ -108,6 +109,60 @@ def api_price():
 
 
 
-
+@proxy.route('/api/add_order/', methods=['POST'])
+def add():
     
+    data = []
+
+    url = "https://merchant.revolut.com/api/1.0/orders"
+
+    payload = json.dumps({
+        "amount": data["amount"],
+        "currency": data["currency"],
+        "settlement_currency": "EUR",
+        "customer_id": data["customer_id"],
+        "enforce_challange": "FORCED"
+    })
+
+    headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': '<yourSecretApiKey>'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    if response.status_code == 201:
+        response = response.json()
+        return {"id": response["id"], "public_id": response["public_id"] }
+    else:
+        return {"error": "Something went wrong"}
+    
+
+def get_order(order_id):
+    
+    url = f"https://merchant.revolut.com/api/1.0/orders/{order_id}"
+
+    payload={}
+    headers = {
+        'Accept': 'application/json',
+        'Authorization': '<yourSecretApiKey>'
+    }
+
+    response = requests.request("GET", url, headers=headers, data=payload)
+
+
+    if response.status_code == 200:
+        response = response.json()
+        return {"id": response["id"], "public_id": response["public_id"] }
+    else:
+        return None
+
+@proxy.route('/shop/cart/checkout/<order_id:int>', methods=['GET'])
+def checkout(order_id):
+    order = get_order(order_id)
+    if order is None:
+        return {"error": "Something went wrong"}
+    else:
+        return render_template('checkout.html', order=order)
 

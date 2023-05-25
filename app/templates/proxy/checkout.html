@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <title></title>
+    <script>!function (e, o, n) { var r = e => { var n = { sandbox: "https://sandbox-merchant.revolut.com/embed.js", prod: "https://merchant.revolut.com/embed.js", dev: "https://merchant.revolut.codes/embed.js" }, r = o.createElement("script"); return r.id = "revolut-checkout", r.src = n[e] || n.prod, r.async = !0, o.head.appendChild(r), r }, t = function (e, r) { return { then: function (t, c) { e.onload = function () { t(r()) }, e.onerror = function () { o.head.removeChild(e), c && c(new Error(n + " failed to load")) } } } }; e[n] = function (o, c) { var u = t(r(c || "prod"), (function () { return e[n](o) })); return "function" == typeof Promise ? Promise.resolve(u) : u }, e[n].payments = function (o) { var c = t(r(o.mode || "prod"), (function () { return e[n].payments({ locale: o.locale || "en", publicToken: o.publicToken || null }) })); return "function" == typeof Promise ? Promise.resolve(c) : c } }(window, document, "RevolutCheckout");
+    </script>
+</head>
+
+<body>
+    <form>
+        <div>
+            <label>Full name</label>
+            <input name="full_name" placeholder="John Doe" />
+        </div>
+        <div>
+            <label>Email</label>
+            <input name="email" placeholder="customer@example.com" />
+        </div>
+        <div>
+            <label>Card</label>
+            <div name="card"></div>
+        </div>
+        <div>
+            <label>Billing Address</label>
+
+
+            <input name="country" placeholder="Country" />
+            <input name="state" placeholder="State" />
+            <input name="city" placeholder="City" />
+            <input name="line1" placeholder="Address line 1" />
+            <input name="line2" placeholder="Address line 2" />
+            <input name="postal" placeholder="Postal" />
+        </div>
+        <button>Submit</button>
+    </form>
+</body>
+<script>
+    RevolutCheckout(" {{ order['public_id'] }} ","sandbox").then(function (instance) {
+        var form = document.querySelector("form");
+        var card = instance.createCardField({
+            target: document.querySelector("[name=card]"),
+            onSuccess() {
+                window.alert("Thank you!");
+            },
+            onError(message) {
+                window.alert(message);
+            },
+            locale: "en"
+        });
+
+
+        form.addEventListener("submit", function (event) {
+            // Prevent browser form submission. You need to submit card details first.
+            event.preventDefault();
+
+
+            var data = new FormData(form);
+
+
+            card.submit({
+                name: data.get("full_name"),
+                email: data.get("email"),
+                billingAddress: {
+                    countryCode: data.get("country"),
+                    region: data.get("state"),
+                    city: data.get("city"),
+                    streetLine1: data.get("line1"),
+                    streetLine2: data.get("line2"),
+                    postcode: data.get("postal")
+                }
+            });
+        });
+    });
+</script>
+
+</html>
